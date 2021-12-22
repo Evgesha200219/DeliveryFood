@@ -17,7 +17,3 @@ const swiper = new Swiper('.swiper', {
     prevEl: '.swiper-button-prev',
   },
 });
-
-const pagination = document.querySelectorAll('.swiper-pagination-bullet');
-console.log();(pagination);
-
