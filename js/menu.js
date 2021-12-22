@@ -1,6 +1,6 @@
 'use strict'
-
 const cardsMenu = document.querySelector('.cards-menu');
+const cartArray = [];
 
 const changeTitle = (restaurant) => {
   const restaurantTitle = document.querySelector('.restaurant-title');
@@ -14,6 +14,15 @@ const changeTitle = (restaurant) => {
   price.textContent = `от ${restaurant.price} руб`;
   category.textContent = restaurant.kitchen;  
 
+}
+/**Функция добавляет обьект выбранного продукта в localStorage
+ * cartItem {} обьект джобавленный в корзину,
+ * cartArray {} массив с продуктами в корзине,
+ */
+const addToCart = (cartItem) => {
+  cartArray.push(cartItem);
+  
+  localStorage.setItem('cart', JSON.stringify(cartArray));
 }
 
 const renderItems = (data) => {
@@ -40,6 +49,16 @@ const renderItems = (data) => {
 						</div>
 					</div>
     `
+  card.querySelector('.button-card-text').addEventListener('click', () => {
+    //создаем обьект продукта, кот. добавлен в корзину
+
+    // const cartItem = {name, price, count: 1}
+    // addToCart(cartItem);
+    // то же самое что:
+
+    addToCart( {name, price, count:1});
+  });
+
     cardsMenu.append(card);
   }) 
 }

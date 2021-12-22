@@ -8,8 +8,9 @@ const btnCloseModal = document.querySelector('.close-auth');
 const formAuth = document.getElementById('logInForm');
 const inputLogin = document.getElementById('login');
 const inputPassword = document.getElementById('password');
+const cartButton = document.getElementById('cart-button');
 
-/**Функция срабатывает при авторизации 
+/**Функция работает при авторизации 
  * btnAuth {} кнопка авторизации
  * btnOut {}кнопка выйти 
  * userName {} имя пользователя
@@ -21,6 +22,7 @@ const login = (user) => {
   userName.style.display = 'block';
   userName.textContent = user.login;
   modalAuth.style.display = 'none';
+  cartButton.style.display = 'flex';
 }
 /**Функция срабатывает при нажатии кнопки Выйти
  * btnAuth {} кнопка авторизации
@@ -33,6 +35,7 @@ const logout = () => {
   btnOut.style.display = 'none';
   userName.style.display = 'none';
   userName.textContent = '';
+  cartButton.style.display = 'none';
 
   localStorage.removeItem('user');
 }
