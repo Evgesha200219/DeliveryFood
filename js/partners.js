@@ -8,7 +8,7 @@ const renderItems = (data) => {
     const {image, kitchen, name, price, products, stars, time_of_delivery} = item;
     const a = document.createElement('a');
     
-    a.setAttribute('href','restaurant.html');
+    a.setAttribute('href','./restaurant.html');
     a.classList.add('card');
     a.classList.add('card-restaurant');
     //сохр обьект product в data-атрибуте для получения уникальных свойств каждого ресторана:
