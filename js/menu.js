@@ -60,6 +60,7 @@ const renderItems = (data) => {
 						</div>
 					</div>
     `
+  // клик по кнопке "в корзину":
   card.querySelector('.button-card-text').addEventListener('click', () => {
     //создаем обьект продукта, кот. добавлен в корзину
 
