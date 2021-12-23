@@ -1,6 +1,8 @@
 'use strict'
 const cardsMenu = document.querySelector('.cards-menu');
-const cartArray = [];
+const cartArray = localStorage.getItem('cart') ?
+  JSON.parse(localStorage.getItem('cart')):[]
+
 
 const changeTitle = (restaurant) => {
   const restaurantTitle = document.querySelector('.restaurant-title');
@@ -20,8 +22,17 @@ const changeTitle = (restaurant) => {
  * cartArray {} массив с продуктами в корзине,
  */
 const addToCart = (cartItem) => {
-  cartArray.push(cartItem);
-  
+    if(cartArray.some((item) => item.id === cartItem.id)) {
+        cartArray.map((item) => {
+          if(item.id == cartItem.id) {
+            item.count++
+          }
+          return item;
+        })
+    } else {
+      cartArray.push(cartItem);
+    }
+
   localStorage.setItem('cart', JSON.stringify(cartArray));
 }
 
@@ -56,7 +67,7 @@ const renderItems = (data) => {
     // addToCart(cartItem);
     // то же самое что:
 
-    addToCart( {name, price, count:1});
+    addToCart( {name, price, id, count:1});
   });
 
     cardsMenu.append(card);
