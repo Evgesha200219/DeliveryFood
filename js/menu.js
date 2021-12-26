@@ -18,7 +18,7 @@ const changeTitle = (restaurant) => {
 
 }
 /**Функция добавляет обьект выбранного продукта в localStorage
- * cartItem {} обьект джобавленный в корзину,
+ * cartItem {} обьект добавленный в корзину,
  * cartArray {} массив с продуктами в корзине,
  */
 const addToCart = (cartItem) => {
@@ -35,7 +35,9 @@ const addToCart = (cartItem) => {
 
   localStorage.setItem('cart', JSON.stringify(cartArray));
 }
-
+/**Функция отрисовывает карточку продукта 
+ * @param {object} data массив данных из localStorage
+ */
 const renderItems = (data) => {
   data.forEach(({description, id, image, name, price}) => {
     const card = document.createElement('div');
