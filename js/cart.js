@@ -6,6 +6,8 @@ const modalCart = document.querySelector('.modal-cart');
 const closeBtn = modalCart.querySelector('.close');
 const body = modalCart.querySelector('.modal-body');
 const buttonSend = modalCart.querySelector('.button-primary');
+const clearCart = modalCart.querySelector('.clear-cart');
+const cartSum = modalCart.querySelector('.modal-pricetag');
 
 /**Функция очищает корзину, удаляет данные из localStorage и закрывает модально окно корзины
  */
@@ -36,7 +38,7 @@ const countMinus = (id) => {
 
   cartArray.map((item) => {
     if (item.id === id) {item.count > 0 ? item.count-- : 0 }
-    return item;      
+    return(item);
 })
   
   localStorage.setItem('cart', JSON.stringify(cartArray));
@@ -44,7 +46,7 @@ const countMinus = (id) => {
   renderItems(cartArray);
 }
 
-/**Функция отрисовывает выбраный продукт в модальном окне корзины
+/**Функция отрисовывает выбранные продукты в модальном окне корзины
  * 
  * @param {object} data массив данных из localStorage
  */
@@ -67,6 +69,20 @@ const renderItems = (data) => {
     `
     body.append(cartElem);
   })
+  sumCart();
+}
+/**Функция считает сумму стоимости все продуктов в корзине 
+ */
+const sumCart = () => {
+  const cartArray = JSON.parse(localStorage.getItem('cart'));
+
+  cartArray.forEach((item) => {
+    item.summ = item.count * item.price;
+  })
+  
+  const result = cartArray.reduce((sum, num) => num.summ + sum, 0)
+  
+  cartSum.textContent = result + ' руб';
 }
 
 //делегирование события клика по кнопкам "минус" и "плюс"
@@ -79,7 +95,14 @@ body.addEventListener('click', (event) => {
     countMinus(event.target.dataset.index);
   }
 })
-//по клику на кнопку "оформить заказ" дааные отправляем на сервер
+
+clearCart.addEventListener('click', () => {
+  body.innerHTML = '';
+  localStorage.removeItem('cart');
+  modalCart.classList.remove('is-open');
+})
+
+//по клику на кнопку "оформить заказ" данные отправляем на сервер
 buttonSend.addEventListener('click', () => {
   const cartArray = localStorage.getItem('cart');
 
@@ -109,5 +132,6 @@ cartButton.addEventListener('click', () => {
 closeBtn.addEventListener('click', () => {
   modalCart.classList.remove('is-open');
 })
+
 }
 cart();
