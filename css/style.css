@@ -265,9 +265,6 @@ button {
     display: flex;
     flex-direction: column;
 }
-
-
-
 .restaurants .card-text {
     min-height: auto;
 }

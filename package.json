@@ -1,0 +1,24 @@
+{
+  "name": "deliveryfood",
+  "version": "1.0.0",
+  "description": "Сервис доставки еды\r Учебный проект \"Сервис доставки еды",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode=prodaction",
+    "watch": "webpack --watch --mode=development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Evgesha200219/DeliveryFood.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Evgesha200219/DeliveryFood/issues"
+  },
+  "homepage": "https://github.com/Evgesha200219/DeliveryFood#readme",
+  "devDependencies": {
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
+  }
+}

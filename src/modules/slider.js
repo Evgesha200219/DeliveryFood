@@ -1,4 +1,5 @@
-
+const slider = () => {
+  
 const swiper = new Swiper('.swiper', {
   loop: true,
   observer: true,
@@ -17,3 +18,6 @@ const swiper = new Swiper('.swiper', {
     prevEl: '.swiper-button-prev',
   },
 });
+}
+
+export default slider
