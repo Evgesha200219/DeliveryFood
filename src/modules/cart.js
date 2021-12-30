@@ -1,5 +1,6 @@
 
 const cart = () => {
+
 'use strict';
 const cartButton = document.getElementById('cart-button');
 const modalCart = document.querySelector('.modal-cart');
@@ -68,8 +69,8 @@ const renderItems = (data) => {
         </div>
     `
     body.append(cartElem);
+
   })
-  sumCart();
 }
 /**Функция считает сумму стоимости все продуктов в корзине 
  */
@@ -94,6 +95,7 @@ body.addEventListener('click', (event) => {
   } else if(event.target.classList.contains('btn-minus')) {
     countMinus(event.target.dataset.index);
   }
+  sumCart();
 })
 
 clearCart.addEventListener('click', () => {
@@ -122,8 +124,11 @@ buttonSend.addEventListener('click', () => {
 
 cartButton.addEventListener('click', () => {
   if(localStorage.getItem('cart')) {
-  // в renderItems передаем массив с данными для выведения в модальном окне корзины
-    renderItems(JSON.parse(localStorage.getItem('cart')));
+    // в renderItems передаем массив с данными для выведения в модальном окне корзины
+      renderItems(JSON.parse(localStorage.getItem('cart')));
+      sumCart();
+  } else {
+      cartSum.textContent = 0 + ' руб';
   }
 
   modalCart.classList.add('is-open');
@@ -134,4 +139,4 @@ closeBtn.addEventListener('click', () => {
 })
 
 }
-cart();
+export default cart
